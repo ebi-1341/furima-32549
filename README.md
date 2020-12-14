@@ -11,7 +11,7 @@
 |first_name        |string |null: false             |
 |last_name_kana    |string |null: false             |
 |first_name_kana   |string |null: false             |
-|birthday          |date   |null: false             |
+|birthday_id       |date   |null: false             |
 
 ### Association
 
@@ -54,7 +54,7 @@
 |Column       |Type      |Option           |
 |-------------|----------|-----------------|
 |postcode     |string    |null: false      |
-|prefecture_id|integer   |null: false      |
+|region_id    |integer   |null: false      |
 |city_name    |string    |null: false      |
 |house_number |string    |null: false      |
 |building     |string    |                 |
