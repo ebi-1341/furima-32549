@@ -2,15 +2,18 @@
 
 ## usersテーブル
 
-|Column           |Type  |Option      |
-|-----------------|------|------------|
-|nickname         |string|null: false |
-|email            |string|            |
-|password         |string|            |
-|last_name        |string|null: false |
-|first_name       |string|null: false |
-|last_name_kana   |string|null: false |
-|first_name_kana  |string|null: false |
+|Column            |Type   |Option                  |
+|------------------|-------|------------------------|
+|nickname          |string |null: false             |
+|email             |string |null: false unique: true|
+|encrypted_password|string |null: false             |
+|last_name         |string |null: false             |
+|first_name        |string |null: false             |
+|last_name_kana    |string |null: false             |
+|first_name_kana   |string |null: false             |
+|birth_year        |integer|null: false             |
+|birth_month       |integer|null: false             |
+|birth_day         |integer|null: false             |
 
 ### Association
 
@@ -24,8 +27,12 @@
 |name        |string    |null: false      |
 |price       |integer   |null: false      |
 |description |text      |null: false      |
-|exhibit_name|string    |                 |
-|user_id     |references|foreign_key: true|
+|user        |references|foreign_key: true|
+|category    |string    |null: false      |
+|condition   |string    |null: false      |
+|burden      |string    |null: false      |
+|region      |string    |null: false      |
+|day         |string    |null: false      |
 
 ### Association
 - has_one :purchase
@@ -37,8 +44,8 @@
 |-------------|----------|-----------------------|
 |purchase_name|string    |                       |
 |purchase_item|string    |                       |
-|user_id      |references|foreign_key: true      |
-|item_id      |references|foreign_key: true      |
+|user         |references|foreign_key: true      |
+|item         |references|foreign_key: true      |
 
 ### Association
 - belongs_to :user
@@ -55,7 +62,7 @@
 |house_number|string    |null: false      |
 |building    |string    |                 |
 |phone_number|string    |null: false      |
-|purchase_id |references|foreign_key: true|
+|purchase    |references|foreign_key: true|
 
 ### Association
 
