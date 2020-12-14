@@ -1,24 +1,62 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column           |Type  |Option      |
+|-----------------|------|------------|
+|nickname         |string|null: false |
+|email            |string|            |
+|password         |string|            |
+|last_name        |string|null: false |
+|first_name       |string|null: false |
+|last_name_kana   |string|null: false |
+|first_name_kana  |string|null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+|Column      |Type      |Option           |
+|------------|----------|-----------------|
+|name        |string    |null: false      |
+|price       |integer   |null: false      |
+|description |text      |null: false      |
+|exhibit_name|string    |                 |
+|user_id     |references|foreign_key: true|
 
-* Database initialization
+### Association
+- has_one :purchase
+- belongs_to :user
 
-* How to run the test suite
+## purchasesテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column       |Type      |Option                 |
+|-------------|----------|-----------------------|
+|purchase_name|string    |                       |
+|purchase_item|string    |                       |
+|user_id      |references|foreign_key: true      |
+|item_id      |references|foreign_key: true      |
 
-* Deployment instructions
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* ...
+
+## addressesテーブル
+
+|Column      |Type      |Option           |
+|------------|----------|-----------------|
+|postcode    |string    |null: false      |
+|city_name   |string    |null: false      |
+|house_number|string    |null: false      |
+|building    |string    |                 |
+|phone_number|string    |null: false      |
+|purchase_id |references|foreign_key: true|
+
+### Association
+
+- belongs_to :purchase
