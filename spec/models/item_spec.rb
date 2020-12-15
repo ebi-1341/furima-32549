@@ -8,7 +8,7 @@ describe Item do
   describe "商品の出品がうまくいくとき" do
     it "name、price、description、image、category_id、condition_id、burden_id、region_id、day_idが
     存在すれば出品することができる" do
-      
+      expect(@item).to be_valid
     end
     it "priceの数値が300から9,999,999の間でのみ登録することができる" do
       
