@@ -13,10 +13,12 @@ class Item < ApplicationRecord
   belongs_to :burden
   belongs_to :region
   belongs_to :day
-
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :burden_id, numericality: { other_than: 1 }
-  validates :region_id, numericality: { other_than: 1 }
-  validates :day_id, numericality: { other_than: 1 }
+  
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :condition_id
+    validates :burden_id
+    validates :region_id
+    validates :day_id
+  end
 end
