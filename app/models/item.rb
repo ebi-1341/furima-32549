@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   validates :name, presence: true
   validates :image, presence: true
-  validates :price, presence: true, format: { with: /\A\d[0-9]+\z/, message: '半角数字を入力してください' },
+  validates :price, presence: true, format: { with: /\A\d[0-9]+\d[0-9]+\z/, message: '半角数字を入力してください' },
                     inclusion: { in: 300..9_999_999, message: '金額は¥300から¥9,999,999までです' }
   validates :description, presence: true
 

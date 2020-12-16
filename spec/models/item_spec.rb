@@ -10,10 +10,6 @@ describe Item do
     存在すれば出品することができる" do
       expect(@item).to be_valid
     end
-    it 'priceの数値が300から9,999,999の間でのみ登録することができる' do
-      @item.price
-      expect(@item).to be_valid
-    end
   end
 
   describe '商品の出品がうまくいかないとき' do
@@ -51,6 +47,11 @@ describe Item do
       @item.price = '10000000'
       @item.valid?
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
+    end
+    it 'priceが半角英数混合では登録できないこと' do
+      @item.price = '200test'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price 半角数字を入力してください")
     end
     it 'category_idが1(選択なし)では出品できないこと' do
       @item.category_id = '1'
