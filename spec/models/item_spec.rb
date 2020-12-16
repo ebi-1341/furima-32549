@@ -39,12 +39,12 @@ describe Item do
       expect(@item.errors.full_messages).to include('Price 半角数字を入力してください')
     end
     it 'priceが300以下の数字では出品できないこと' do
-      @item.price = '299'
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
     end
     it 'priceが9,999,999以上の数字では出品できない' do
-      @item.price = '10000000'
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
     end
@@ -54,27 +54,27 @@ describe Item do
       expect(@item.errors.full_messages).to include("Price 半角数字を入力してください")
     end
     it 'category_idが1(選択なし)では出品できないこと' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
     it 'condition_idが1(選択なし)では出品できないこと' do
-      @item.condition_id = '1'
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Condition must be other than 1')
     end
     it 'burden_idが1(選択なし)では出品できないこと' do
-      @item.burden_id = '1'
+      @item.burden_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Burden must be other than 1')
     end
     it 'region_idが1(選択なし)では出品できないこと' do
-      @item.region_id = '1'
+      @item.region_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Region must be other than 1')
     end
     it 'day_idが1(選択なし)では出品できないこと' do
-      @item.day_id = '1'
+      @item.day_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Day must be other than 1')
     end
