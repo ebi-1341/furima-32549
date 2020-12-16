@@ -125,8 +125,8 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <% if @item %>
-        <li class='list'>
+      <li class='list'>
+        <% if @item %>
           <% @item.each do |item| %>
             <%= link_to "#" do %>
               <div class='item-img-content'>
@@ -153,26 +153,27 @@
               </div>
             <% end %>
           <% end %>  
-        </li>
-      <% else %>  
-        <li class='list'>
-          <%= link_to '#' do %>
-          <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              商品を出品してね！
-            </h3>
-            <div class='item-price'>
-              <span>99999999円<br>(税込み)</span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
-              </div>
+        <% end %>
+      </li>
+      <% if @item.blank? %>
+      <li class='list'>
+        <%= link_to '#' do %>
+        <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+          <div class='item-price'>
+            <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
             </div>
           </div>
-          <% end %>
-        </li>
-      <% end %>  
+        </div>
+        <% end %>
+      </li>
+      <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
