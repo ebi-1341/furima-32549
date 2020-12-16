@@ -133,9 +133,9 @@
                 <%= image_tag item.image, class: "item-img" if item.image.attached? %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
+                <%# <div class='sold-out'> %>
+                  <%# <span>Sold Out!!</span> %>
+                <%# </div> %>
                 <%# //商品が売れていればsold outを表示しましょう %>
 
               </div>
@@ -154,9 +154,6 @@
             <% end %>
           <% end %>  
         </li>
-
-        <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-        <%# 商品がある場合は表示されないようにしましょう %>
       <% else %>  
         <li class='list'>
           <%= link_to '#' do %>
@@ -175,8 +172,6 @@
           </div>
           <% end %>
         </li>
-        <%# //商品がある場合は表示されないようにしましょう %>
-        <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <% end %>  
     </ul>
   </div>
