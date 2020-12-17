@@ -44,14 +44,14 @@ describe Item do
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
     end
     it 'priceが9,999,999以上の数字では出品できない' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
     end
     it 'priceが半角英数混合では登録できないこと' do
       @item.price = '200test'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price 半角数字を入力してください")
+      expect(@item.errors.full_messages).to include('Price 半角数字を入力してください')
     end
     it 'category_idが1(選択なし)では出品できないこと' do
       @item.category_id = 1
