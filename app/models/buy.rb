@@ -37,6 +37,9 @@ class buy
   validates :birthday, presence: true
 
   def save
-
+    user = User.create(nickname: nickname, last_name: last_name, first_name: first_name, last_name_kana: last_name_kana, first_name_kana: first_name_kana, birthday: birthday)
+    item = Item.create(name: name, price: price, description: description, category_id: category_id, burden_id: burden_id, condition_id: condition_id, region_id: region_id, day_id: day_id, user_id: user.id)
+    buy = Buy.create(user_id: user.id)
+    Address.create(postcode: postcode, region_id: region_id, city_name: city_name, house_number: house_number, building: building, phone_number: phone_number, user_id: user.id)
   end
 end
