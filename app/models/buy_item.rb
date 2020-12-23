@@ -1,9 +1,10 @@
 class BuyItem
 
   include ActiveModel::Model
-  attr_accessor :region_id, :postcode, :city_name, :house_number, :building, :phone_number, :hoge, :user_id, :item_id
+  attr_accessor :region_id, :postcode, :city_name, :house_number, :building, :phone_number, :token, :user_id, :item_id
 
   with_options presence: true do
+    validates :token
     validates :city_name
     validates :house_number
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
