@@ -7,7 +7,8 @@ describe BuyItem do
     end
 
     describe '商品の購入がうまく保存されるとき' do
-      it 'postcode、region_id、city_name、house_number、phone_numberが正しく入力されているとき' do
+      it 'postcode、region_id、city_name、house_number、phone_numberが正しく入力されているとき
+      かつtokenがあればうまく保存されること' do
         expect(@buy_item).to be_valid
       end
     end
@@ -53,7 +54,11 @@ describe BuyItem do
         @buy_item.valid?
         expect(@buy_item.errors.full_messages).to include("Phone number 10桁か11桁の数字を入力してください")
       end
-
+      it 'tokenが空では保存できないこと' do
+        @buy_item.token = nil
+        @buy_item.valid?
+        expect(@buy_item.errors.full_messages).to include("Token can't be blank")
+      end
     end
 
 end
