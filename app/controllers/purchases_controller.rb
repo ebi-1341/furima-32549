@@ -6,7 +6,6 @@ class PurchasesController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-
   def create
     @item = Item.find(params[:item_id])
     @buy_item = BuyItem.new(purchase_params)
@@ -20,19 +19,22 @@ class PurchasesController < ApplicationController
   end
 
   private
+
   def purchase_params
-    params.require(:buy_item).permit(:postcode, :region_id, :city_name, :house_number, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buy_item).permit(:postcode, :region_id, :city_name, :house_number, :building, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_params[:token],
       currency: 'jpy'
     )
   end
-  
+
   def move_to_index
     item = Item.find(params[:item_id])
     if current_user.id == item.user_id
@@ -40,6 +42,5 @@ class PurchasesController < ApplicationController
     elsif item.id = item.purchase
       redirect_to root_path
     end
-
   end
 end
