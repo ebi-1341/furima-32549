@@ -49,7 +49,7 @@ describe Item do
       expect(@item.errors.full_messages).to include('Price 金額は¥300から¥9,999,999までです')
     end
     it 'priceが半角英数混合では登録できないこと' do
-      @item.price = '200test'
+      @item.price = 'test400test'
       @item.valid?
       expect(@item.errors.full_messages).to include('Price 半角数字を入力してください')
     end

@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :image
-    validates :price, format: { with: /\A\d[0-9]+\d[0-9]+\z/, message: '半角数字を入力してください' },
+    validates :price, format: { with: /\A\d[0-9]+\z/, message: '半角数字を入力してください' },
                       inclusion: { in: 300..9_999_999, message: '金額は¥300から¥9,999,999までです' }
     validates :description
   end
