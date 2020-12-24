@@ -3,6 +3,8 @@ class BuyItem
   attr_accessor :region_id, :postcode, :city_name, :house_number, :building, :phone_number, :token, :user_id, :item_id
 
   with_options presence: true do
+    validates :user_id
+    validates :item_id
     validates :token
     validates :city_name
     validates :house_number

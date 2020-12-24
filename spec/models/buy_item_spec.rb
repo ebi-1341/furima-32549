@@ -10,6 +10,10 @@ describe BuyItem do
       かつtokenがあればうまく保存されること' do
       expect(@buy_item).to be_valid
     end
+    it 'buildingが入力されていなくても保存できること' do
+      @buy_item.building = nil
+      expect(@buy_item).to be_valid
+    end
   end
 
   describe '商品の購入がうまく保存されないとき' do
@@ -43,20 +47,25 @@ describe BuyItem do
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include("Phone number can't be blank")
     end
-    it 'phone_numberが10桁か11桁の数字でないと保存できないこと' do
-      @buy_item.phone_number = 111_111_111
+    it 'phone_numberが英数混合では保存できないこと' do
+      @buy_item.phone_number = "11aa22aa111"
       @buy_item.valid?
-      expect(@buy_item.errors.full_messages).to include('Phone number 10桁か11桁の数字を入力してください')
-    end
-    it 'phone_numberが10桁か11桁の数字でないと保存できないこと' do
-      @buy_item.phone_number = 222_333_344_445
-      @buy_item.valid?
-      expect(@buy_item.errors.full_messages).to include('Phone number 10桁か11桁の数字を入力してください')
+      expect(@buy_item.errors.full_messages).to include("Phone number 10桁か11桁の数字を入力してください")
     end
     it 'tokenが空では保存できないこと' do
       @buy_item.token = nil
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include("Token can't be blank")
+    end
+    it 'user_idが空では登録できないこと' do
+      @buy_item.user_id = nil
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("User can't be blank")
+    end
+    it 'item_idが空では登録できないこと' do
+      @buy_item.item_id = nil
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
