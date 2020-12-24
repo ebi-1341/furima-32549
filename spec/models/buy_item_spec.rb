@@ -23,7 +23,7 @@ describe BuyItem do
       expect(@buy_item.errors.full_messages).to include("Postcode can't be blank")
     end
     it 'postcodeに半角ハイフンを含んだ正しい形式でないと保存できないこと' do
-      @buy_item.postcode = 3_333_333
+      @buy_item.postcode = '3_333_333'
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
     end
@@ -48,7 +48,12 @@ describe BuyItem do
       expect(@buy_item.errors.full_messages).to include("Phone number can't be blank")
     end
     it 'phone_numberが英数混合では保存できないこと' do
-      @buy_item.phone_number = "11aa22aa111"
+      @buy_item.phone_number = '11aa22aa11'
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Phone number 10桁か11桁の数字を入力してください")
+    end
+    it 'phone_numberが12桁以上では保存できないこと' do
+      @buy_item.phone_number = '111222233334'
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include("Phone number 10桁か11桁の数字を入力してください")
     end
